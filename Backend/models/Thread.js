@@ -14,7 +14,7 @@ const MessageSchema = new mongoose.Schema({
         type:Date,
         default:Date.now
     }
-});
+})
 
 const ThreadSchema = new mongoose.Schema({
     threadId:{

@@ -3,20 +3,30 @@ import 'dotenv/config';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import chatRoutes from './routes/chat.js';
+//
+import path from "path";
+import { fileURLToPath } from "url";
+
+
 
 const app = express();
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
 
+//
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 app.use("/api", chatRoutes);
+//
+app.use(express.static(path.join(__dirname, "../Frontend/dist")));
 
 
-app.listen(PORT, ()=>{
-    console.log(`Server running on port ${PORT}`);
-    connectDB();
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Frontend/dist/index.html"));
 });
 
 const connectDB =  async()=>{
@@ -28,8 +38,12 @@ const connectDB =  async()=>{
     }
 }
 
-
-app.get("/", (req, res) => {
-  res.send("ChatGPT Clone Backend is running 🚀");
+app.listen(PORT, ()=>{
+    console.log(`Server running on port ${PORT}`);
+    connectDB();
 });
+
+
+
+
 
