@@ -94,7 +94,7 @@ function Sidebar() {
             </ul>
  
             <div className="sign">
-                <p>By chatGPT &hearts;</p>
+                <p>By ChatGPT</p>
             </div>
         </section>
     )
