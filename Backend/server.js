@@ -28,3 +28,8 @@ const connectDB =  async()=>{
     }
 }
 
+
+app.get("/", (req, res) => {
+  res.send("ChatGPT Clone Backend is running 🚀");
+});
+
